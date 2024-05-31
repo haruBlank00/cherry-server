@@ -1,7 +1,9 @@
-import express, { Application, Request, Response } from "express";
 import cors, { CorsOptions } from "cors";
-import mongoose from "mongoose";
 import "dotenv/config";
+import express, { Application } from "express";
+import mongoose from "mongoose";
+import { ProxyRouter } from "./classes/proxyRouter";
+import { logger } from "./middleware/logger";
 
 class Cherry {
   public static app: Application;
@@ -22,9 +24,9 @@ class Cherry {
 
     this.app.use(cors(this.corsOptions));
 
-    this.app.get("/", (_: Request, res: Response) => {
-      return res.json({ message: "HELLOOOOO CHEERRYYYY!!!" });
-    });
+    this.app.use(logger);
+
+    this.app.use("/api/v1", ProxyRouter.map());
   }
 
   private static corsOptions: CorsOptions = {
