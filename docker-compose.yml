@@ -1,0 +1,16 @@
+version: "3.8"
+
+services:
+  mongodb:
+    image: mongo:latest
+    container_name: cherry_db
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: cherry
+      MONGO_INITDB_ROOT_PASSWORD: cherry
+    volumes:
+      - ./data:/data/db
+volumes:
+  mongodb-data:
+    driver: local
