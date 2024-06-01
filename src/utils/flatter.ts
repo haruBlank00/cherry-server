@@ -1,5 +1,7 @@
 // let's flatten the categories for effecient data storage
 
+import { Category } from "@src/modules/daraz/types";
+
 /*
  * [{
  *  id
@@ -43,16 +45,6 @@
  * }]
  *
  */
-export type Category = {
-  id: string;
-  spm: string;
-  label: string;
-  href?: string;
-  image?: {
-    src: string;
-    alt: string;
-  };
-};
 
 export type TCategoryN = {
   subcategories?: TCategoryN[];

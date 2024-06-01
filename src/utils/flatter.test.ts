@@ -1,6 +1,7 @@
 import { describe, it } from "node:test";
-import { Category, TCategoryN, flattenCategories } from "./flatter.js";
 import assert from "node:assert";
+import { TCategoryN, flattenCategories } from "./flatter";
+import { Category } from "@src/modules/daraz/types";
 
 const testData: TCategoryN[] = [
   {
