@@ -12,6 +12,8 @@ export class DarazScrapperController {
   define() {
     this.router
       .route("/save-categories")
-      .post(DarazScrapperService.saveHeaderCategories);
+      .post(DarazScrapperService.saveCategories);
+
+    this.router.route("/save-product").post(DarazScrapperService.saveProduct);
   }
 }

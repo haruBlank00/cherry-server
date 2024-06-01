@@ -2,21 +2,52 @@ import { Request, Response } from "express";
 import { Category, categorySchema } from "./model/categories.schema";
 import { model } from "mongoose";
 import { flattenCategories } from "@src/utils/flatter";
+import { ProductModel } from "./model/product.schema";
 
 class DarazScrapperServiceClass {
   category: typeof Category;
+  product: typeof ProductModel;
   constructor() {
     this.category = Category;
-    this.saveHeaderCategories = this.saveHeaderCategories.bind(this);
+    this.product = ProductModel;
+    this.saveCategories = this.saveCategories.bind(this);
+    this.saveProduct = this.saveProduct.bind(this);
   }
 
-  async saveHeaderCategories(req: Request, res: Response) {
+  async saveCategories(req: Request, res: Response) {
     const { body } = req;
     const flatten = flattenCategories(body);
-    const categories = await this.category.create(flatten);
-    return res.json({
-      body,
-    });
+
+    try {
+      await this.category.create(flatten);
+      return res.json({
+        message: "Categories saved",
+        success: true,
+      });
+    } catch (err) {
+      return res.json({
+        message: "Categories not saved",
+        success: false,
+      });
+    }
+  }
+
+  async saveProduct(req: Request, res: Response) {
+    const { body } = req;
+
+    try {
+      await this.product.create(body);
+
+      return res.json({
+        message: "Product saved",
+        success: true,
+      });
+    } catch (e) {
+      return res.json({
+        message: "Categories not saved",
+        success: false,
+      });
+    }
   }
 }
 

@@ -54,6 +54,7 @@ export type TCategoryN = {
 // if not then it will probably have image propery
 
 export const flattenCategories = (categories: TCategoryN[]) => {
+  if (!Array.isArray(categories)) return [];
   return categories.reduce<Category[]>((acc, curr) => {
     const { subcategories, spm, id, label, href, image } = curr;
 
