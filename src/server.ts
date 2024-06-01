@@ -20,7 +20,7 @@ class Cherry {
   private static configuration(): void {
     this.app.set("port", 5500);
 
-    this.app.use(express.json());
+    this.app.use(express.json({ limit: "50MB" }));
 
     this.app.use(cors(this.corsOptions));
 
