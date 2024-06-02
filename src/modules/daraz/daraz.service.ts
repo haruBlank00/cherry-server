@@ -7,11 +7,13 @@ import { ProductModel } from "./model/product.schema";
 class DarazScrapperServiceClass {
   category: typeof Category;
   product: typeof ProductModel;
+
   constructor() {
     this.category = Category;
     this.product = ProductModel;
     this.saveCategories = this.saveCategories.bind(this);
     this.saveProduct = this.saveProduct.bind(this);
+    this.getProducts = this.getProducts.bind(this);
   }
 
   async saveCategories(req: Request, res: Response) {
@@ -47,6 +49,24 @@ class DarazScrapperServiceClass {
         message: "Categories not saved",
         success: false,
       });
+    }
+  }
+
+  async getProducts(req: Request, res: Response) {
+    try {
+      // we should add paginations and filters
+      const products = await this.product.find().limit(10);
+      return res.json({
+        success: true,
+        data: products,
+      });
+    } catch (error) {
+      if (error instanceof Error) {
+        return res.json({
+          success: false,
+          error: error.message,
+        });
+      }
     }
   }
 }

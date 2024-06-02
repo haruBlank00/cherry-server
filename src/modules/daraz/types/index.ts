@@ -77,6 +77,7 @@ type Specification = {
 };
 
 export type Product = {
+  url: string;
   name: string;
   images: { src: string; alt: string }[];
   price: {
