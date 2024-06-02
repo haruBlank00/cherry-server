@@ -1,5 +1,14 @@
 # Cherry server
 
+This is a simple dummy server with few end points to receive data from scrapper
+and save to MongoDB
+
+## How to start?
+
+- `yarn install`
+- `docker compose up` - for mongodb
+- `yarn start:dev`
+
 - setup project and run server
 - setup mongodb as we have suprise schema and we're scrapping document so yeah
 

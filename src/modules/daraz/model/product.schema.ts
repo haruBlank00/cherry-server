@@ -1,6 +1,8 @@
 import { Schema, model } from "mongoose";
 import { Product } from "../types";
 
+// maybe we can break down the schema
+// and we don't have product linked with category :(
 const productSchema = new Schema<Product>({
   url: String,
   name: String,
